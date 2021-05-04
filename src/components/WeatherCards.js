@@ -6,7 +6,6 @@ function WeatherCards({weatherData, locationData}) {
     return (
         <StyledWeatherCards>
             <div className="locationInfo">
-                <p className="title">React Weather App</p>
                 <p className="location">{locationData.name}, {locationData.sys.country}</p>
             </div>
             <div className="cards">
@@ -33,11 +32,7 @@ const StyledWeatherCards = styled.div`
         justify-content: center;
         flex-direction: column;
         padding: .75em;
-        .title {
-            color: white;
-            font-size: 3rem;
-            letter-spacing: 5px;
-        }
+        
         .location {
             color: lightskyblue;
             font-size: 2rem;
