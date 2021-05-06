@@ -1,17 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
-function Card({daily}) {
-    const [date, setDate] = React.useState();
-    React.useEffect(() => {
-        const timestamp = new Date(daily.dt * 1000);
-        setDate(timestamp.toDateString());
-     
-    }, [])
+
+function Card({daily, setDetailed}) {
+
+    const GetDetailedWeatherData = () => {
+        localStorage.setItem("daily", JSON.stringify(daily));
+        setDetailed(daily);
+
+    }
     
     return (
         <StyledCard>
-            <p className="time">{date} </p>
+            <p className="time">{new Date(daily.dt * 1000).toDateString()} </p>
             <p className="temp">{daily.temp.day}<span>&#176;C</span></p>
             <div className="minmax">
                 <p>L:{daily.temp.min}<span>&#176;C</span></p>
@@ -19,8 +21,7 @@ function Card({daily}) {
             </div>
             <img src={`http://openweathermap.org/img/wn/${daily.weather[0].icon}@2x.png`} alt={daily.weather[0].main}/> 
             <p className="weather">{daily.weather[0].description}</p>
-            <button>Details</button>
-           
+            <button><Link to={`/details/${daily.id}`} onClick={GetDetailedWeatherData}>Details</Link></button>        
         </StyledCard>
     )
 }
@@ -36,6 +37,30 @@ const StyledCard = styled.div`
     margin: .5rem;
     letter-spacing: 3px;
     color: white;
+    button {
+        a {
+            color: white;
+            text-decoration: none;
+            padding: 0;
+            margin: 0;
+        }
+        background-color: transparent;
+        border: 1px solid limegreen;
+        padding: .5rem;
+        margin: 1rem;
+        font-family: 'Cairo', sans-serif;
+        font-size: 1rem;
+        letter-spacing: 3px;
+        cursor: pointer;
+        border-radius: 50px;
+        width: 30%;
+        transition: all .25s ease-in-out;
+        &:hover {
+            color: black;
+            background-color: limegreen;
+        }
+   
+    }
     .time {
         font-size: 1.25rem;
     }
@@ -58,27 +83,6 @@ const StyledCard = styled.div`
     .weather {
         font-size: 1.20rem;
     }
-
-    button {
-        background-color: transparent;
-        border: 1px solid limegreen;
-        padding: .5rem;
-        margin: 1rem;
-        font-family: 'Cairo', sans-serif;
-        font-size: 1rem;
-        letter-spacing: 3px;
-        color: white;
-        cursor: pointer;
-        border-radius: 50px;
-        width: 40%;
-        transition: all .25s ease-in-out;
-        &:hover {
-            color: black;
-            background-color: limegreen;
-        }
-    }
-
-
 ` 
 
 export default Card;

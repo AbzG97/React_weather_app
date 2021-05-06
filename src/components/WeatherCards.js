@@ -1,8 +1,13 @@
 import React from 'react'
 import Card from './Card'
 import styled from 'styled-components'
+import { v4 as uuidv4 } from 'uuid';
 
-function WeatherCards({weatherData, locationData}) {
+function WeatherCards({weatherData, locationData, setDetailed}) {
+    console.log(weatherData);
+    weatherData.daily.forEach((element) => {
+        element["id"] = uuidv4();
+    });
     return (
         <StyledWeatherCards>
             <div className="locationInfo">
@@ -10,7 +15,7 @@ function WeatherCards({weatherData, locationData}) {
             </div>
             <div className="cards">
                 {weatherData.daily.map((daily) => (
-                    <Card daily={daily}/>
+                    <Card key={daily.id} daily={daily} setDetailed={setDetailed}/>
                 ))}
             </div>
         </StyledWeatherCards>
