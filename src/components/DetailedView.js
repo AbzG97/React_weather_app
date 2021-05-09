@@ -84,6 +84,13 @@ const StyledCard = styled.div`
         h1 {
             letter-spacing: 7px;
             font-size: 2rem;
+        }  
+    }
+    @media (max-width: 600px) {
+        .weatherData {
+            /* background-color: red; */
+            grid-template-columns: 100%;
+            grid-template-rows: auto;
         }
     }
 ` 

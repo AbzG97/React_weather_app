@@ -21,7 +21,7 @@ function Card({daily, setDetailed}) {
             </div>
             <img src={`http://openweathermap.org/img/wn/${daily.weather[0].icon}@2x.png`} alt={daily.weather[0].main}/> 
             <p className="weather">{daily.weather[0].description}</p>
-            <button><Link to={`/details/${daily.id}`} onClick={GetDetailedWeatherData}>Details</Link></button>        
+            <Link to={`/details/${daily.id}`} onClick={GetDetailedWeatherData} className="detailsBtn">Details</Link>       
         </StyledCard>
     )
 }
@@ -37,23 +37,19 @@ const StyledCard = styled.div`
     margin: .5rem;
     letter-spacing: 3px;
     color: white;
-    button {
-        a {
-            color: white;
-            text-decoration: none;
-            padding: 0;
-            margin: 0;
-        }
+    
+    .detailsBtn {
+        color: white;
+        text-decoration: none;
         background-color: transparent;
         border: 1px solid limegreen;
-        padding: .5rem;
+        padding: 1rem;
         margin: 1rem;
         font-family: 'Cairo', sans-serif;
         font-size: 1rem;
         letter-spacing: 3px;
         cursor: pointer;
         border-radius: 50px;
-        width: 30%;
         transition: all .25s ease-in-out;
         &:hover {
             color: black;

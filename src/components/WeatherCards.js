@@ -43,7 +43,25 @@ const StyledWeatherCards = styled.div`
             font-size: 2rem;
             letter-spacing: 5px;
         }
-
     }
+    @media (max-width: 1250px) {
+        .cards {
+            grid-template-columns: 33% 33% 33%;
+            grid-template-rows: auto;
+        }
+    }
+    @media (max-width: 850px) {
+        .cards {
+            grid-template-columns: 50% 50%;
+            grid-template-rows: auto;
+        }
+    }
+    @media (max-width: 600px) {
+        .cards {
+            grid-template-columns: 100%;
+            grid-template-rows: auto;
+        }
+    }
+    
     `
 export default WeatherCards
